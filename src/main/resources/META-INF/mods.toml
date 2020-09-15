@@ -1,8 +1,8 @@
 modLoader="javafml"
-loaderVersion="[33,)"
+loaderVersion="[34,)"
 
 license="LGPL-3.0-only"
-issueTrackerURL="https://championash5357.github.io/ChampionAsh5357/"
+issueTrackerURL="https://github.com/ChampionAsh5357/Back-Slot/issues"
 
 [[mods]]
 modId="backslot"
@@ -10,7 +10,7 @@ version="${version}"
 displayName="\u00a7cBack \u00a79Slot"
 
 updateJSONURL="https://championash5357.github.io/ChampionAsh5357/projects/backslot/update.json"
-displayURL="https://championash5357.github.io/ChampionAsh5357/"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/back-slot"
 logoFile="bs.png"
 
 credits="The original implementation in Custom Ideas suggested by thejollygreenogre."
@@ -23,12 +23,12 @@ A slot for your back. That's it.
 [[dependencies.backslot]]
     modId="forge"
     mandatory=true
-    versionRange="[33,)"
+    versionRange="[34,)"
     ordering="NONE"
     side="BOTH"    
 [[dependencies.backslot]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.2]"
+    versionRange="[1.16.3]"
     ordering="NONE"
     side="BOTH"

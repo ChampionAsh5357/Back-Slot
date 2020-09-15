@@ -103,7 +103,6 @@ public class BackInventoryScreen extends DisplayEffectsScreen<BackInventoryConta
 		return this.recipeBookGui;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int x, int y) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -114,7 +113,6 @@ public class BackInventoryScreen extends DisplayEffectsScreen<BackInventoryConta
 		drawEntityOnScreen(i + 51, j + 75, 30, (float)(i + 51) - this.oldMouseX, (float)(j + 75 - 50) - this.oldMouseY, this.minecraft.player);
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, LivingEntity p_228187_5_) {
 		float f = -(float)Math.atan((double)(mouseX / 40.0F));
 		float f1 = (float)Math.atan((double)(mouseY / 40.0F));

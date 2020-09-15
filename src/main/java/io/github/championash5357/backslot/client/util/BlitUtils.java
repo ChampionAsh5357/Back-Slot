@@ -38,7 +38,6 @@ public class BlitUtils {
 		innerReverseBlit(matrixStack.getLast().getMatrix(), x1, x2, y1, y2, reverseBlitOffset, (uOffset + 0.0F) / (float)textureWidth, (uOffset + (float)uWidth) / (float)textureWidth, (vOffset + 0.0F) / (float)textureHeight, (vOffset + (float)vHeight) / (float)textureHeight);
 	}
 
-	@SuppressWarnings("deprecation")
 	private static void innerReverseBlit(Matrix4f matrix, int x1, int x2, int y1, int y2, int reverseBlitOffset, float minU, float maxU, float minV, float maxV) {
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
