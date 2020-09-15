@@ -1,0 +1,9 @@
+{
+  "key.backslot.categories.backslot": "Back Slot",
+  "key.backslot.swapbackslot": "Swap Back Slot",
+  "notification.backslot.changelog": "Changelog: ",
+  "notification.backslot.current_version": "The current version is %s.",
+  "notification.backslot.outdated": "%s is currently outdated.",
+  "widget.backslot.to_back_button": "To Back",
+  "widget.backslot.to_front_button": "To Front"
+}
