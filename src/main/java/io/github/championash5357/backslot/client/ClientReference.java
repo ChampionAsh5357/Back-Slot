@@ -5,7 +5,6 @@ import java.util.Map.Entry;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.lwjgl.glfw.GLFW;
 
-import io.github.championash5357.backslot.api.client.ClientConfigHolder;
 import io.github.championash5357.backslot.api.client.ClientManagers;
 import io.github.championash5357.backslot.client.gui.screen.inventory.BackInventoryScreen;
 import io.github.championash5357.backslot.client.gui.widget.button.ExtendedImageButton;
@@ -40,6 +39,7 @@ import net.minecraftforge.client.event.InputEvent.MouseInputEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.VersionChecker;
 import net.minecraftforge.fml.VersionChecker.CheckResult;
@@ -47,7 +47,7 @@ import net.minecraftforge.fml.VersionChecker.Status;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
-import net.minecraftforge.forgespi.language.IConfigurable;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
 
 public class ClientReference implements ISidedReference {
@@ -58,37 +58,32 @@ public class ClientReference implements ISidedReference {
 
 	@Override
 	public void setup(IEventBus mod, IEventBus forge) {
-		/*DeferredWorkQueue.runLater(() -> {
-			((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(ClientManagers.getTransformationManager());
-		});*/
 		mod.addListener(this::construct);
 		mod.addListener(this::clientSetup);
+		mod.addListener(this::enqueueMessage);
 		mod.addListener(this::stitchTexture);
 		forge.addListener(this::clientLoggedIn);
 		forge.addListener(this::keyInput);
 		forge.addListener(this::mouseInput);
 		forge.addListener(this::screenInit);
 	}
-	
+
 	private void construct(final FMLConstructModEvent event) {
 		event.enqueueWork(() -> {
 			((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(ClientManagers.getTransformationManager());
 		});
 	}
 
+	private void enqueueMessage(final InterModEnqueueEvent event) {
+		ModList.get().forEachModContainer((string, container) -> InterModComms.sendTo(string, "enableRendering", () -> ClientConfigHolder.CLIENT.enableRendering.get())); 
+	}
 
 	private void clientLoggedIn(final ClientPlayerNetworkEvent.LoggedInEvent event) {
 		IModInfo info = ModList.get().getModContainerById(BackSlotMain.ID).get().getModInfo();
 		CheckResult result = VersionChecker.getResult(info);
 		if (ClientConfigHolder.CLIENT.enableUpdateNotifications.get() && (result.status == Status.OUTDATED || result.status == Status.BETA_OUTDATED)) {
 			TextComponent clickableVersion = new StringTextComponent(TextFormatting.GOLD + "" + result.target);
-			if (info instanceof IConfigurable) {
-				((IConfigurable) info).getConfigElement("displayURL").ifPresent(url -> {
-					if (url instanceof String) {
-						clickableVersion.setStyle(clickableVersion.getStyle().setClickEvent(new ClickEvent(Action.OPEN_URL, (String) url)));
-					}
-				});	
-			}
+			clickableVersion.setStyle(clickableVersion.getStyle().setClickEvent(new ClickEvent(Action.OPEN_URL, result.url)));
 			event.getPlayer().sendMessage(new TranslationTextComponent("notification.backslot.outdated", new StringTextComponent(TextFormatting.RED + "Back " + TextFormatting.BLUE + "Slot")).mergeStyle(TextFormatting.GRAY), Util.DUMMY_UUID);
 			event.getPlayer().sendMessage(new TranslationTextComponent("notification.backslot.current_version", clickableVersion).mergeStyle(TextFormatting.GRAY), Util.DUMMY_UUID);
 			event.getPlayer().sendMessage(new TranslationTextComponent("notification.backslot.changelog").mergeStyle(TextFormatting.WHITE), Util.DUMMY_UUID);

@@ -1,7 +1,7 @@
 package io.github.championash5357.backslot.common;
 
-import io.github.championash5357.backslot.api.client.ClientConfigHolder;
 import io.github.championash5357.backslot.api.common.capability.CapabilityInstances;
+import io.github.championash5357.backslot.client.ClientConfigHolder;
 import io.github.championash5357.backslot.client.ClientReference;
 import io.github.championash5357.backslot.common.capability.CapabilityProviderSerializable;
 import io.github.championash5357.backslot.common.capability.backslot.CapabilityBackSlot;

@@ -1,4 +1,4 @@
-package io.github.championash5357.backslot.api.client;
+package io.github.championash5357.backslot.client;
 
 import org.apache.commons.lang3.tuple.Pair;
 
