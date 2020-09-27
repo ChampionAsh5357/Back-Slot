@@ -2,11 +2,12 @@ package io.github.championash5357.backslot.common.network.client;
 
 import java.util.function.Supplier;
 
+import io.github.championash5357.backslot.common.network.IMessage;
 import io.github.championash5357.backslot.server.ServerHandler;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class CProcessActionMessage {
+public class CProcessActionMessage implements IMessage {
 
 	private byte action;
 
@@ -18,16 +19,16 @@ public class CProcessActionMessage {
 		return action;
 	}
 
-	public static void encode(CProcessActionMessage message, PacketBuffer buffer) {
-		buffer.writeByte(message.action);
+	public void encode(PacketBuffer buffer) {
+		buffer.writeByte(this.action);
 	}
 
 	public static CProcessActionMessage decode(PacketBuffer buffer) {
 		return new CProcessActionMessage(buffer.readByte());
 	}
 
-	public static boolean handle(CProcessActionMessage message, Supplier<NetworkEvent.Context> ctx) {
-		ctx.get().enqueueWork(() -> ServerHandler.handle(message, ctx.get().getSender()));
+	public boolean handle(Supplier<NetworkEvent.Context> ctx) {
+		ctx.get().enqueueWork(() -> ServerHandler.handle(this, ctx.get().getSender()));
 		return true;
 	}
 
