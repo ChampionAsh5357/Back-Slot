@@ -1,3 +1,20 @@
+/*
+ * Entity Armor Models
+ * Copyright (C) 2020 ChampionAsh5357
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as 
+ * published by the Free Software Foundation version 3.0 of the License.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package io.github.championash5357.backslot.client.util;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -38,6 +55,7 @@ public class BlitUtils {
 		innerReverseBlit(matrixStack.getLast().getMatrix(), x1, x2, y1, y2, reverseBlitOffset, (uOffset + 0.0F) / (float)textureWidth, (uOffset + (float)uWidth) / (float)textureWidth, (vOffset + 0.0F) / (float)textureHeight, (vOffset + (float)vHeight) / (float)textureHeight);
 	}
 
+	@SuppressWarnings("deprecation")
 	private static void innerReverseBlit(Matrix4f matrix, int x1, int x2, int y1, int y2, int reverseBlitOffset, float minU, float maxU, float minV, float maxV) {
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);

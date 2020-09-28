@@ -1,3 +1,20 @@
+/*
+ * Entity Armor Models
+ * Copyright (C) 2020 ChampionAsh5357
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as 
+ * published by the Free Software Foundation version 3.0 of the License.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package io.github.championash5357.backslot.client.gui.screen.inventory;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -103,6 +120,7 @@ public class BackInventoryScreen extends DisplayEffectsScreen<BackInventoryConta
 		return this.recipeBookGui;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int x, int y) {
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -113,6 +131,7 @@ public class BackInventoryScreen extends DisplayEffectsScreen<BackInventoryConta
 		drawEntityOnScreen(i + 51, j + 75, 30, (float)(i + 51) - this.oldMouseX, (float)(j + 75 - 50) - this.oldMouseY, this.minecraft.player);
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, LivingEntity p_228187_5_) {
 		float f = -(float)Math.atan((double)(mouseX / 40.0F));
 		float f1 = (float)Math.atan((double)(mouseY / 40.0F));
