@@ -1,5 +1,5 @@
 /*
- * Entity Armor Models
+ * Back Slot
  * Copyright (C) 2020 ChampionAsh5357
  * 
  * This program is free software: you can redistribute it and/or modify
